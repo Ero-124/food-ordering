@@ -4,7 +4,6 @@ import UserTabs from '@/components/layout/UserTabs'
 import useProfile from '@/hooks/useProfile'
 import { dbTimeForHuman } from '@/lib/datetime'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function OrdersPage() {
@@ -32,10 +31,6 @@ export default function OrdersPage() {
 				Loading...
 			</h1>
 		)
-	}
-
-	if (!profile.admin) {
-		return redirect('/')
 	}
 
 	return (
