@@ -90,7 +90,7 @@ export default function CategoriesPage() {
 		<section className='mt-8 max-w-2xl mx-auto'>
 			<UserTabs isAdmin={profileData.admin} />
 			<form className='mt-8' onSubmit={handleCategorySubmit}>
-				<div className='flex gap-2 items-end'>
+				<div className='sm:flex gap-2 items-end'>
 					<div className='grow'>
 						<label>
 							{editedCategory ? 'Update category' : 'New category name'}
@@ -107,7 +107,7 @@ export default function CategoriesPage() {
 						/>
 					</div>
 					<div className='pb-2 flex gap-2'>
-						<button className='border border-primary' type='submit'>
+						<button className=' border border-primary' type='submit'>
 							{editedCategory ? 'Update' : 'Create'}
 						</button>
 						<button

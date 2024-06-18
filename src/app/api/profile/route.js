@@ -42,6 +42,5 @@ export async function GET(req) {
 	}
 	const user = await User.findOne(filterUser).lean()
 	const userInfo = await UserInfo.findOne({ email: user.email }).lean()
-
 	return Response.json({ ...user, ...userInfo })
 }

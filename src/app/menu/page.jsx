@@ -1,6 +1,7 @@
 'use client'
 import SectionHeaders from '@/components/layout/SectionHeaders'
 import MenuItem from '@/components/menu/MenuItem'
+import MenuSkeleton from '@/components/skeleton/MenuSkeleton'
 import React, { useEffect, useMemo, useState } from 'react'
 
 export default function MenuPage() {
@@ -51,13 +52,7 @@ export default function MenuPage() {
 	}, [])
 	return (
 		<section className='mt-8'>
-			{loading && (
-				<div className='text-center'>
-					<div className='spinner-border text-primary' role='status'>
-						<span className='visually-hidden'>Loading...</span>
-					</div>
-				</div>
-			)}
+			{loading && <MenuSkeleton listsToRender={3} />}
 			{showErrorMessage && (
 				<div className='text-center'>
 					<div className='spinner-border text-primary' role='status'>

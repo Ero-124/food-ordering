@@ -4,6 +4,7 @@ import UserTabs from '@/components/layout/UserTabs'
 import useProfile from '@/hooks/useProfile'
 import { dbTimeForHuman } from '@/lib/datetime'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function OrdersPage() {
@@ -15,22 +16,29 @@ export default function OrdersPage() {
 		fetchOrders()
 	}, [])
 
-	function fetchOrders() {
-		fetch('/api/orders')
-			.then(response => response.json())
-			.then(orders => {
-				if (orders?.length > 0) {
-					setOrders(orders.reverse())
-					setLoadingOrders(false)
-				}
-			})
+	async function fetchOrders() {
+		try {
+			const response = await fetch('/api/orders')
+			const orders = await response.json()
+			if (orders?.length > 0) {
+				setOrders(orders.reverse())
+				setLoadingOrders(false)
+			}
+		} catch (error) {
+			console.log(error)
+		}
 	}
+
 	if (loading) {
 		return (
 			<h1 className='mt-8 text-primary text-lg text-center bg-white'>
 				Loading...
 			</h1>
 		)
+	}
+
+	if (!profile?.email) {
+		return redirect('/')
 	}
 
 	return (
@@ -56,7 +64,7 @@ export default function OrdersPage() {
 									</div>
 								</div>
 								<div className='grow'>
-									<div className='flex gap-2 items-center mb-1'>
+									<div className='flex-col-reverse sm:flex-row flex gap-2 items-center mb-1'>
 										<div className='grow'>{order.userEmail}</div>
 										<div className='text-gray-500 text-sm'>
 											{dbTimeForHuman(order.createdAt)}

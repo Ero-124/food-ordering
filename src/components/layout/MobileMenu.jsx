@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import CartIcon from '../icons/Cart'
@@ -29,7 +30,7 @@ export default function MobileMenu({ cartProducts, status, userName }) {
 		<>
 			<div className='flex md:hidden  items-center justify-between'>
 				<Link className='text-primary font-semibold text-2xl' href='/'>
-					ST PIZZA
+					<Image src='/pizza-logo.png' alt='Pizza' width={80} height={80} />
 				</Link>
 				<div className='flex gap-8 items-center'>
 					<Link href='/cart' className='relative'>

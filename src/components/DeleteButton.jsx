@@ -7,8 +7,8 @@ const DeleteButton = ({ label, onDelete }) => {
 		return (
 			<div className='fixed bg-black/30 inset-0 flex items-center h-full justify-center'>
 				<div className='bg-white p-4 rounded-lg'>
-					<div>Are you sure you want to delete?</div>
-					<div className='flex gap-2 mt-1'>
+					<div className='text-center'>Are you sure you want to delete?</div>
+					<div className='flex items-center gap-2 mt-1'>
 						<button type='button' onClick={() => setShowConfirm(false)}>
 							Cancel
 						</button>
@@ -20,7 +20,7 @@ const DeleteButton = ({ label, onDelete }) => {
 								setShowConfirm(false)
 							}}
 						>
-							Yes, delete!
+							Yes
 						</button>
 					</div>
 				</div>

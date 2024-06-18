@@ -1,6 +1,7 @@
 'use client'
 import UserForm from '@/components/layout/UserForm'
 import UserTabs from '@/components/layout/UserTabs'
+import ProfileSkeleton from '@/components/skeleton/ProfileSkeleton'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -50,11 +51,7 @@ export default function ProfilePage() {
 	}
 
 	if (status === 'loading' || !profileFetched) {
-		return (
-			<h1 className='mt-8 text-primary text-lg text-center bg-white'>
-				Loading...
-			</h1>
-		)
+		return <ProfileSkeleton />
 	}
 
 	return (

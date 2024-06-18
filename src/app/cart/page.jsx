@@ -116,7 +116,7 @@ export default function CartPage() {
 			<div className='text-center'>
 				<SectionHeaders mainHeader='Cart' />
 			</div>
-			<div className='mt-8 grid grid-cols-2 gap-8'>
+			<div className='mt-2 md:mt-8 md:grid md:grid-cols-2 gap-8'>
 				<div>
 					{cartProducts?.length > 0 ? (
 						cartProducts.map((product, index) => (
@@ -130,7 +130,7 @@ export default function CartPage() {
 					) : (
 						<div>No products in your shopping cart</div>
 					)}
-					<div className='py-2 justify-end pr-16 flex items-center'>
+					<div className='py-2 justify-end pr-2 md:pr-16 flex items-center'>
 						<div className='text-gray-500 flex flex-col gap-1'>
 							<span>Subtotal:</span>
 							<span>Delivery:</span>

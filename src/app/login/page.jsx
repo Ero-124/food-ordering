@@ -1,8 +1,12 @@
 'use client'
-import { signIn } from 'next-auth/react'
+import useProfile from '@/hooks/useProfile'
+import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 import { useState } from 'react'
 export default function LoginPage() {
+	const { data: profile, loading } = useProfile()
+	const session = useSession()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [loginInProgress, setLoginInProgress] = useState(false)
@@ -12,6 +16,25 @@ export default function LoginPage() {
 		await signIn('credentials', { email, password, callbackUrl: '/' })
 		setLoginInProgress(false)
 	}
+
+	if (loading) {
+		return (
+			<div className='fixed inset-0 z-10 bg-gray-400/60 flex items-center justify-center'>
+				<div
+					className='inline-block h-16 text-primary w-16 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]'
+					role='status'
+				>
+					<span className='!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]'>
+						Loading...
+					</span>
+				</div>
+			</div>
+		)
+	}
+	if (session.status === 'authenticated') {
+		return redirect('/')
+	}
+
 	return (
 		<section className='mt-8'>
 			<h1 className='text-center text-primary text-4xl mb-4'>Login</h1>

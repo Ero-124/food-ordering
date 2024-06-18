@@ -1,10 +1,12 @@
 'use client'
+import useProfile from '@/hooks/useProfile'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'
 
 const UserTabs = ({ isAdmin }) => {
 	const path = usePathname()
+	const { data: profile } = useProfile()
 
 	// Мемоизация классов активных ссылок
 	const activeClassProfile = useMemo(
@@ -46,9 +48,13 @@ const UserTabs = ({ isAdmin }) => {
 					</Link>
 				</>
 			)}
-			<Link className={activeClassOrders} href='/orders'>
-				Orders
-			</Link>
+			{profile?.email && (
+				<>
+					<Link className={activeClassOrders} href='/orders'>
+						Orders
+					</Link>
+				</>
+			)}
 		</div>
 	)
 }

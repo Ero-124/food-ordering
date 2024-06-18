@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import MenuItem from '../menu/MenuItem'
+import MenuSkeleton from '../skeleton/MenuSkeleton'
 import SectionHeaders from './SectionHeaders'
 export default function HomeMenu() {
 	const [bestSellers, setBestSellers] = useState([])
@@ -29,10 +30,16 @@ export default function HomeMenu() {
 					subHeader={'check out'}
 				/>
 			</div>
-			<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
-				{bestSellers?.length > 0 &&
-					bestSellers.map(item => <MenuItem key={item._id} {...item} />)}
-			</div>
+
+			{bestSellers?.length === 0 ? (
+				<MenuSkeleton listsToRender={3} />
+			) : (
+				<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
+					{bestSellers.map(item => (
+						<MenuItem key={item._id} {...item} />
+					))}
+				</div>
+			)}
 		</section>
 	)
 }

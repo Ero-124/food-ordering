@@ -44,17 +44,19 @@ export default function UsersPage() {
 					users.map(user => (
 						<div
 							key={user._id}
-							className='bg-gray-100 rounded-lg mb-2 p-1 px-4 flex items-center gap-4'
+							className='bg-gray-100 rounded-lg mb-2 px-2 p-2 sm:p-1 sm:px-4 flex items-center gap-4'
 						>
-							<div className='grid grid-cols-2 md:grid-cols-3 gap-4 grow'>
+							<div className='grid md:grid-cols-3 gap-2 sm:gap-4 grow'>
 								<div className='text-gray-900'>
-									<span className={user.name ? '' : 'italic '}>
+									<span className={user.name ? '' : 'italic ' + 'truncate'}>
 										{user.name || 'No name'}
 									</span>
 								</div>
-								<span className='text-gray-500'>{user.email}</span>
+								<span className='text-gray-500 text-[12px] sm:text-[16px] truncate'>
+									{user.email}
+								</span>
 							</div>
-							<div className=''>
+							<div className='text-sm sm:text-[16px]'>
 								<Link className='button' href={`/users/${user._id}`}>
 									Edit
 								</Link>
